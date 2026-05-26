@@ -5,6 +5,7 @@ class Car {
   String owner;
   String description;
   List images;
+  String carId;
 
   Car({
     required this.images,
@@ -13,5 +14,6 @@ class Car {
     required this.location,
     required this.owner,
     required this.description,
+    required this.carId,
   });
 }

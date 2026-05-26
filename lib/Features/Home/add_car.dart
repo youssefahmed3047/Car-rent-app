@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:typed_data';
 import 'package:car_rent_app/Core/cloudinary_service.dart';
 import 'package:car_rent_app/Shared/custom_textfeild.dart';

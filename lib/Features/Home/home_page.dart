@@ -1,4 +1,5 @@
 import 'package:car_rent_app/Features/Home/add_car.dart';
+import 'package:car_rent_app/Features/Home/favorits.dart';
 import 'package:car_rent_app/Features/Home/home.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +27,7 @@ class _HomePageState extends State<HomePage> {
           },
           children: const [
             Home(),
-            Center(child: Text("Favorites")),
+            Favorits(),
             AddCar(),
             Center(child: Text("Chats")),
             Center(child: Text("Profile")),

@@ -28,7 +28,6 @@ class CloudinaryService {
 
       return imageUrl;
     } else {
-      print("Upload failed: ${res.body}");
       return null;
     }
   }
