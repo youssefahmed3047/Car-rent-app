@@ -7,6 +7,7 @@ class CustomTextfeild extends StatefulWidget {
   final IconData icon;
   final bool isHiden;
   final bool isTall;
+  final VoidCallback? action;
 
   const CustomTextfeild({
     super.key,
@@ -15,6 +16,7 @@ class CustomTextfeild extends StatefulWidget {
     required this.icon,
     this.isHiden = false,
     this.isTall = false,
+    this.action,
   });
 
   @override
@@ -51,6 +53,8 @@ class _CustomTextfeildState extends State<CustomTextfeild> {
                 },
                 icon: Icon(obscureIcon, color: colors.primary),
               )
+            : widget.action != null
+            ? IconButton(onPressed: widget.action, icon: Icon(Icons.send))
             : null,
         filled: true,
         fillColor: colors.primary.withValues(alpha: 0.08),

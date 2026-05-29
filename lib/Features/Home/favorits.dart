@@ -10,32 +10,34 @@ class Favorits extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(leading: const SizedBox(), title: const Text('Favorites')),
-      body: ValueListenableBuilder(
-        valueListenable: HiveService.favoritesBox.listenable(),
-        builder: (context, box, child) {
-          final favorites = HiveService.getFavorites();
+      appBar: AppBar(leading: const SizedBox(), title: const Text('المفضلات')),
+      body: HiveService.favoritesBox.isEmpty
+          ? Center(child: Text('ليس لديك اي منتج في قائمة المفضلات'))
+          : ValueListenableBuilder(
+              valueListenable: HiveService.favoritesBox.listenable(),
+              builder: (context, box, child) {
+                final favorites = HiveService.getFavorites();
 
-          return GridView.builder(
-            itemCount: favorites.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 0.96,
+                return GridView.builder(
+                  itemCount: favorites.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 0.96,
+                  ),
+                  itemBuilder: (context, index) {
+                    final favorite = favorites[index];
+                    final Car car = HiveService.carFromFavorite(favorite);
+
+                    return CarCard(
+                      car: car,
+                      ownername: Future.value(favorite['ownerName'] ?? ''),
+                      isFavorit: true,
+                      carId: car.carId,
+                    );
+                  },
+                );
+              },
             ),
-            itemBuilder: (context, index) {
-              final favorite = favorites[index];
-              final Car car = HiveService.carFromFavorite(favorite);
-
-              return CarCard(
-                car: car,
-                ownername: Future.value(favorite['ownerName'] ?? ''),
-                isFavorit: true,
-                carId: car.carId,
-              );
-            },
-          );
-        },
-      ),
     );
   }
 }
